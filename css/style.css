@@ -1,0 +1,741 @@
+/* Fitness Calculator - Optimize Edilmiş CSS */
+
+/* Container */
+.fitness-calculator-container,
+.bodyfat-calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header */
+.calculator-header {
+    background: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.calculator-header h2 {
+    margin: 0 0 10px;
+    color: #ff4757;
+    font-weight: 600;
+}
+
+.calculator-header p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* Tabs */
+.tab-header {
+    display: flex;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.tab-btn {
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6c757d;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.tab-btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #ff4757;
+    transition: width 0.3s;
+}
+
+.tab-btn.active {
+    color: #ff4757;
+}
+
+.tab-btn.active:after {
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+    padding: 30px 20px;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form Elements */
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Radio buttons */
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Inputs */
+input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: #ff4757;
+    outline: none;
+}
+
+select {
+    background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23495057" viewBox="0 0 16 16"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>') no-repeat calc(100% - 10px) center;
+    padding-right: 30px;
+    appearance: none;
+}
+
+/* Range slider */
+.range-container {
+    position: relative;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #ff4757;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #ff4757;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.range-value {
+    text-align: center;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.calculate-button, .back-button, .reporting-button, .pdf-button, .email-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.calculate-button .dashicons, .back-button .dashicons, .reporting-button .dashicons {
+    margin-left: 8px;
+}
+
+.back-button {
+    background: #6c757d;
+}
+
+.reporting-button {
+    background: #28a745;
+}
+
+.pdf-button {
+    background: #dc3545;
+}
+
+.email-button {
+    background: #007cba;
+}
+
+.calculate-button:hover {
+    background: #ff2c40;
+}
+
+.back-button:hover {
+    background: #5a6268;
+}
+
+.reporting-button:hover {
+    background: #218838;
+}
+
+.pdf-button:hover {
+    background: #c82333;
+}
+
+.email-button:hover {
+    background: #005a87;
+}
+
+/* Results */
+.results-summary {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (min-width: 768px) {
+    .results-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .results-summary {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.result-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+}
+
+.result-card.primary {
+    background: #ff4757;
+    color: white;
+}
+
+.result-card.secondary {
+    background: #5a67d8;
+    color: white;
+}
+
+.result-card.tertiary {
+    background: #3c366b;
+    color: white;
+}
+
+.result-card.bmi {
+    background: #6f42c1;
+    color: white;
+}
+
+.result-card h3 {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.result-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.result-unit {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.result-category {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 8px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-block;
+}
+
+/* Macros */
+.macros-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.macros-container h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.macros-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.macro-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.macro-icon {
+    margin-right: 15px;
+}
+
+.macro-icon .dashicons {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    line-height: 40px;
+    color: #ff4757;
+}
+
+.macro-info {
+    flex: 1;
+}
+
+.macro-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.macro-value {
+    font-weight: 600;
+    color: #ff4757;
+}
+
+/* İdeal Kilo Container */
+.ideal-weight-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.ideal-weight-container h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.ideal-weight-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.ideal-weight-item {
+    display: flex;
+    align-items: flex-start;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ideal-weight-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.ideal-weight-icon {
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.ideal-weight-icon .dashicons {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    color: #ff4757;
+}
+
+.ideal-weight-info {
+    flex: 1;
+}
+
+.ideal-weight-name {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #495057;
+    font-size: 14px;
+}
+
+.ideal-weight-value {
+    font-weight: 600;
+    color: #ff4757;
+    line-height: 1.4;
+}
+
+/* Body Fat Calculator Specific */
+.bodyfat-category-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.bodyfat-category-container h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.bodyfat-meter {
+    position: relative;
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.category-list {
+    display: flex;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.category-name {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.category-name.essential {
+    background: #4299e1;
+}
+
+.category-name.athletic {
+    background: #38b2ac;
+}
+
+.category-name.fitness {
+    background: #48bb78;
+}
+
+.category-name.acceptable {
+    background: #ecc94b;
+}
+
+.category-name.obesity {
+    background: #ed8936;
+}
+
+.category-name.active {
+    font-weight: bold;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.meter-pointer {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    transform: translateX(-50%);
+    transition: left 1s ease;
+}
+
+.pointer-arrow {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #ff4757;
+    margin: 0 auto;
+}
+
+.pointer-label {
+    background: #ff4757;
+    color: white;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.category-description {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #495057;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Gender specific fields */
+.female-only {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .results-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .macros-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ideal-weight-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ideal-weight-item.full-width {
+        grid-column: 1;
+    }
+}
+
+/* Reporting specific styles */
+#visualization-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.visualization-header h3 {
+    margin: 0 0 20px;
+    color: #495057;
+    font-size: 18px;
+}
+
+.results-visualization {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.results-visualization h3 {
+    margin: 0 0 15px;
+    color: #ff4757;
+    font-size: 18px;
+}
+
+.result-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.result-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.result-section h4 {
+    margin: 0 0 10px;
+    color: #495057;
+    font-size: 16px;
+}
+
+.result-section p {
+    margin: 5px 0;
+    color: #6c757d;
+}
+
+.sharing-options h4 {
+    margin: 0 0 15px;
+    color: #495057;
+    font-size: 16px;
+}
+
+.export-options {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.email-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.email-form input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Sosyal Medya Paylaşım Stilleri */
+.social-sharing {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.social-sharing h5 {
+    margin: 0 0 15px;
+    color: #495057;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.social-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.social-btn .dashicons {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.social-btn.facebook {
+    background: #1877f2;
+}
+
+.social-btn.facebook:hover {
+    background: #166fe5;
+}
+
+.social-btn.twitter {
+    background: #1da1f2;
+}
+
+.social-btn.twitter:hover {
+    background: #1a91da;
+}
+
+.social-btn.whatsapp {
+    background: #25d366;
+}
+
+.social-btn.whatsapp:hover {
+    background: #22bf5b;
+}
+
+.social-btn.copy {
+    background: #6c757d;
+}
+
+.social-btn.copy:hover {
+    background: #5a6268;
+}
+
+.social-btn.copied {
+    background: #28a745 !important;
+    transform: scale(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .email-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .export-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-buttons {
+        grid-template-columns: 1fr;
+    }
+}
